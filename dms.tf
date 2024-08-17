@@ -79,7 +79,7 @@ resource "aws_dms_replication_instance" "dms_instance" {
   apply_immediately          = true
   publicly_accessible        = false
   auto_minor_version_upgrade = true
-  availability_zone          = "eu-west-2a"  # Adjust AZ as needed
+  availability_zone          = "us-east-1a"  # Adjust AZ as needed1
   replication_subnet_group_id = aws_dms_replication_subnet_group.dms_subnet_group.id
 
   vpc_security_group_ids = [aws_security_group.dms_sg.id]
@@ -104,10 +104,10 @@ resource "aws_dms_endpoint" "source_endpoint" {
   endpoint_type = "source"
   engine_name   = "postgres"
   username      = "postgres"  # Replace with your source DB username
-  password      = "password"  # Replace with your source DB password
-  server_name   = "database-1-instance-1.cgfnjlpo1b2r.eu-west-2.rds.amazonaws.com"  # Replace with your source DB host
+  password      = "dbpasswd1"  # Replace with your source DB password
+  server_name   = "database-1-instance-1.cgfnjlpo1b2r.us-east-1.rds.amazonaws.com"  # Replace with your source DB host2
   port          = 5432
-  database_name = "karo"  # Replace with your source DB name
+  database_name = "goody_db"  # Replace with your source DB name
 }
 
 # DMS Target Endpoint (RDS PostgreSQL)
@@ -116,10 +116,10 @@ resource "aws_dms_endpoint" "target_endpoint" {
   endpoint_type = "target"
   engine_name   = "postgres"
   username      = "postgres"  # Replace with your target DB username
-  password      = "password"  # Replace with your target DB password
-  server_name   = "database-2-instance-1.cgfnjlpo1b2r.eu-west-2.rds.amazonaws.com"  # Replace with your target DB host
+  password      = "dbpasswd1"  # Replace with your target DB password
+  server_name   = "database-2-instance-1.cgfnjlpo1b2r.us-east-1.rds.amazonaws.com"  # Replace with your target DB host
   port          = 5432
-  database_name = "karo"  # Replace with your target DB name
+  database_name = "goody_db"  # Replace with your target DB name
 }
 
 # DMS Task
